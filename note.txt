@@ -14,6 +14,44 @@ const capabilities = {
    "appium:appActivity": "com.ludashi.superboost.MainActivity"
 };
 
+const doaibu = {
+   hostname: process.env.APPIUM_HOST || '0.0.0.0',
+   port: parseInt(process.env.APPIUM_PORT, 10) || 4723,
+   logLevel: 'info',
+   capabilities,
+};
+
+async function instagram(){
+   let driver;
+   try {
+  driver = await remote(doaibu);
+      async function programDilanjutkan(driver) {
+         const packageName = 'com.ludashi.superboost';
+         await driver.pressKeyCode(3);
+
+         await driver.execute('mobile: shell', {
+            command: 'pm clear',
+            args: [packageName],
+            includeStderr: true,
+            timeout: 5000
+         });
+
+         throw new Error();
+      }
+      const startTimeSeluruh = new Date();
+      const fileName = 'nama.txt';
+      if (!fs.existsSync(fileName)) {
+         fs.writeFileSync(fileName, '', 'utf-8');
+      }
+
+      const doaibuNama = fs.readFileSync('nama.txt', 'utf-8').split('\n').filter(Boolean);
+      const email = doaibuNama.map(nama => nama.replace(/\s+/g, '').toLowerCase() + '@akunlama.com');
+      const sandi = doaibuNama.map(nama => nama.replace(/\s+/g, '').toLowerCase() + '*');
+
+   } catch(){
+      throw new Error();
+   }
+}
 
 Mengecek udid Devices nya apa: = b503270
 adb devices
